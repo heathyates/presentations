@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Heath Yates">
+<meta name="dcterms.date" content="2022-08-24">
+
+<title>A Brief Introduction to Bootstrapping</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="intro-to-bootstrapping_files/libs/clipboard/clipboard.min.js"></script>
+<script src="intro-to-bootstrapping_files/libs/quarto-html/quarto.js"></script>
+<script src="intro-to-bootstrapping_files/libs/quarto-html/popper.min.js"></script>
+<script src="intro-to-bootstrapping_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="intro-to-bootstrapping_files/libs/quarto-html/anchor.min.js"></script>
+<link href="intro-to-bootstrapping_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="intro-to-bootstrapping_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="intro-to-bootstrapping_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="intro-to-bootstrapping_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="intro-to-bootstrapping_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">A Brief Introduction to Bootstrapping</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Heath Yates </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 24, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><img src="cowboy-bootstrap.jpg" class="img-fluid"></p>
+<section id="background" class="level3">
+<h3 class="anchored" data-anchor-id="background">Background</h3>
+<p>Bootstrap is a statistical resampling technique proposed by Efron Bradely in 1979 <span class="citation" data-cites="efron1979bootstrap">(<a href="#ref-efron1979bootstrap" role="doc-biblioref">Efron 1979</a>)</span>. This is a very brief introduction to bootstrapping. First, this introduction will briefly define what resampling is and the historical context of bootstrapping. Second, to faciliate the promised brevity, further explaination will be rendered via a concrete example and python code. Lastly, a summary and further reader provided so the interested reader may read further.</p>
+<p>In statistics, a common definition for resampling is any variety of methods that do one of the following <span class="citation" data-cites="resampling">(<a href="#ref-resampling" role="doc-biblioref">Resampling 2022</a>)</span>:</p>
+<pre><code>1. Estimating the percision of stample statistics (mean, median, variance) by using subsets of available data or drawing randomly with replacement from a set of data points 
+2. Permutation tests: exchanging labels on data points when performing significant tests 
+3. Validating models by using random subsets </code></pre>
+<p>Bootstraping is relevant to 1 and 3.</p>
+<p>Historically, bootstrapping is the culmination of earlier work that began in 1946 by Maurice Quenouille and 1958 by John Tukey called Jacknife <span class="citation" data-cites="tukey1958bias">(<a href="#ref-tukey1958bias" role="doc-biblioref">Tukey 1958</a>)</span>. The colorful name is meant to convey the resampling technique is a rough and ready statistical tool rather than a precise solution to a specific problem. In simple terms, given <code>n</code> sample size, the jacknife estimator is built by aggregating the parameter estimators from each subsample of size <code>(n-1)</code> by omitting one observation.</p>
+</section>
+<section id="boostrapping" class="level3">
+<h3 class="anchored" data-anchor-id="boostrapping">Boostrapping</h3>
+<p>Building upon earlier work, Efron proposed a statistical procedure that resamples a single dataset to create many simulated samples. From a single sample, one can calculate a plethora of sample statistics such as mean, median, standard deviation.</p>
+<p>Let us expand on the above with an example. Let’s say you wanted to know how many Pokemon you have. How would you find out? Likely, you would just count them all. However, what if you wanted to know the average number of Pokemon that individuals at our company own? Suppose you do not want to interview everyone, but get permission to randomly select 25 individuals. You survey those 25 individuals and this becomes you dataset of 25 points.</p>
+<p>Now we are ready to set up bootstrap on the dataset above by constructiong 50 simulated datasets as follows:</p>
+<pre><code>* Each simulated dataset is called a bag, we sample with replacement 25 times, from our original data set 
+* Using replacement means that some data points are counted more than once and some never get picked 
+* For each simulated dataset or bag, we calculated the average number of Pokemon owned </code></pre>
+<p>After we have done the above 50 times, we have 50 averages of the mean number of Pokemon our coworkers own. From this you can calulate a 95% confidence interval that might state something like: <code>It is 95% likely that the mean number of Pokemon owned by individuals at Artisight is between 9 and 15</code>. The above is completely for demonstrative purposes, not based on any actual data or calculations. Please see further reading to see something more concrete.</p>
+<p>Resampling involves reusing our dataset many times. Bootstrapping comes from the phrase of doing the impossible by “pulling yourself up by your own bootstraps”. However, research has shown that bootstrap sampling distributions approximate the correct sampling distributions. Remember, the original sample is a proxy to the real population and we then draw random samples from it. The key here is that our original sample <strong>must</strong> accurately represent the actual population.</p>
+</section>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p><img src="luggage_password.png" class="img-fluid"></p>
+<p>For simplicity and brevity purposes, see the basic example below:</p>
+<p><img src="bootstrapping_example_simple.png" class="img-fluid"></p>
+<p>The following python code below shows how to create a bag and list what the out of bag observations are:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scikit-learn bootstrap</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> resample</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data sample</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare bootstrap sample</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>boot <span class="op">=</span> resample(data, replace<span class="op">=</span><span class="va">True</span>, n_samples<span class="op">=</span><span class="dv">4</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bootstrap Sample: </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> boot)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># out of bag observations</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>oob <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> data <span class="cf">if</span> x <span class="kw">not</span> <span class="kw">in</span> boot]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'OOB Sample: </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> oob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bootstrap Sample: [0.6, 0.4, 0.5, 0.1]
+OOB Sample: [0.2, 0.3]</code></pre>
+</div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Bootstrapping is a powerful and popular resampling method. The following are commonly understood to be the strenghts and drawbacks:</p>
+<p><strong>Pro</strong></p>
+<pre><code>* Can be used on small datasets 
+* Handles outliers well 
+* Does not rely on parametric assumptions </code></pre>
+<p><strong>Con</strong></p>
+<pre><code>* Can require long amount of computational time 
+* Can mislead with poor initial dataset 
+* There will be a margin of error </code></pre>
+<p>In statistics, this technique is very useful in providing additional insights on specific estimators such as mean, median, variance, and etc. In data science, it is often used to calculated classification accuracy confidence interval. See further reading below if interested.</p>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>The following articles were useful in the development of this brief introduction and recommended for further reading:</p>
+<ul>
+<li><a href="https://statisticsbyjim.com/hypothesis-testing/bootstrapping/">Bootstrapping in Statistics</a></li>
+<li><a href="https://machinelearningmastery.com/a-gentle-introduction-to-the-bootstrap-method/">Gentle Introduction to Bootstrapping</a></li>
+<li><a href="https://machinelearningmastery.com/calculate-bootstrap-confidence-intervals-machine-learning-results-python/">Confidence Intervals for Machine Learning Results</a></li>
+<li><a href="https://datascienceplus.com/introduction-to-bootstrap-with-applications-to-mixed-effect-models/">Introduction to bootstrap with applications to mixed-effect models</a></li>
+</ul>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-efron1979bootstrap" class="csl-entry" role="doc-biblioentry">
+Efron, B. 1979. <span>“Bootstrap Methods: Another Look at the Jackknife Annals of Statistics 7: 1–26.”</span> <em>View Article PubMed/NCBI Google Scholar</em> 24.
+</div>
+<div id="ref-resampling" class="csl-entry" role="doc-biblioentry">
+Resampling. 2022. <span>“Resampling (Statistics) — <span>W</span>ikipedia<span>,</span> the Free Encyclopedia.”</span> <a href="http://en.wikipedia.org/w/index.php?title=Estimation_lemma&amp;oldid=375747928">http://en.wikipedia.org/w/index.php?title=Estimation_lemma&amp;oldid=375747928</a>.
+</div>
+<div id="ref-tukey1958bias" class="csl-entry" role="doc-biblioentry">
+Tukey, John. 1958. <span>“Bias and Confidence in Not Quite Large Samples.”</span> <em>Ann. Math. Statist.</em> 29: 614.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
