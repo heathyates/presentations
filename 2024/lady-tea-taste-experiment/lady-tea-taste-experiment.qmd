@@ -1,0 +1,69 @@
+---
+title: "Lady Tasting Tea Experiment"
+subtitle: "The origins and philosophy behind hypothesis testing"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    css: styles.css
+    footer: <https://quarto.org>
+resources:
+  - lady-tea-taste-experiment.pdf
+---
+
+
+# Introduction 
+
+## The Lady Tasting Tea Experiment 
+
+- Under Construction
+- Under Construction 
+
+## Hypothesis Testing 
+
+- Under Construction
+- Under Construction 
+
+
+# Walkthrough through the Experiment
+
+## The Experiment 
+
+- Under Construction
+- Under Construction 
+
+## Overview of Mathematics 
+
+- Under Construction
+- Under Construction
+
+## Philosophy of Hypothesis Testing 
+
+- Under Construction 
+- Under Construction 
+
+## Results of Experiment 
+
+- Under Construction 
+- Under Construction 
+
+
+# Conclusion and Relevance Today 
+
+## Summary 
+
+- Under Construction
+- Under Construction 
+
+## Relevance Today 
+
+- Under Construction
+- Under Construction 
+
+## References 
+
+- Under Construction 
+- Under Construction 
